@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Excel Data Retrieval</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
+    <script>
+      const dataUrl = 'data.xlsx';
+      fetch(dataUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const data = e.target.result;
+            const workbook = XLSX.read(data, {type: 'binary'});
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet);
+            const inputField = document.getElementById('input-value');
+            const outputField = document.getElementById('output-value');
+            document.getElementById('data-form').addEventListener('submit', function(event) {
+              event.preventDefault();
+              const inputValue = inputField.value;
+              const result = jsonData.find(row => row['medicine'] === inputValue);
+              if (result) {
+                outputField.value = result['datacol'];
+              } else {
+                outputField.value = '';
+              }
+            });
+          };
+          reader.readAsBinaryString(blob);
+        });
+    </script>
+  </head>
+  <body>
+    <h1>Excel Data Retrieval</h1>
+    <form id="data-form">
+      <label for="input-value">Enter value:</label>
+      <input type="text" id="input-value">
+      <br><br>
+      <button type="submit">Submit</button>
+    </form>
+    <br><br>
+    <label for="output-value">Output value:</label>
+    <textarea id="output-value"></textarea>
+  </body>
+</html>

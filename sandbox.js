@@ -1,19 +1,33 @@
-function submitForm(event) {
-	event.preventDefault();
-	const inputField = document.getElementById("query");
-	const outputField = document.getElementById("answer");
-	const query = inputField.value;
-	const apiEndpoint = "https://auth.healthwise.net/oauth2/token";
-	// Replace the above API endpoint with the actual endpoint of your medical AI API
-
-	fetch(apiEndpoint, {
-		method: "POST",
-		body: JSON.stringify({ query }),
-		headers: {
-			"Content-type": "application/json; charset=UTF-8"
-		}
-	})
-	.then(response => response.json())
-	.then(data => outputField.value = data.answer)
-	.catch(error => console.error(error));
-}
+const dataUrl = "data.xlsx";
+fetch(dataUrl)
+	.then((response) => response.blob())
+	.then((blob) => {
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			const data = e.target.result;
+			const workbook = XLSX.read(data, { type: "binary" });
+			const sheetName = workbook.SheetNames[0];
+			const worksheet = workbook.Sheets[sheetName];
+			const jsonData = XLSX.utils.sheet_to_json(worksheet);
+			const inputField = document.getElementById("input-value");
+			const contentField = document.getElementById("content");
+			const dosageField = document.getElementById("dosage");
+			const form = document.querySelector("form");
+			form.addEventListener("submit", function (event) {
+				event.preventDefault();
+				const inputValue = inputField.value;
+				const result = jsonData.find(
+					(row) => row["medicine"] === inputValue
+				);
+				if (result) {
+					const datacol = JSON.parse(result["datacol"]);
+					contentField.value = datacol.content;
+					dosageField.value = datacol.dosage;
+				} else {
+					contentField.value = "Medicine Not Found";
+					dosageField.value = "";
+				}
+			});
+		};
+		reader.readAsBinaryString(blob);
+	});
