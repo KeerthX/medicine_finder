@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>prescription.ai</title>
+</head>
+<body>
+    <section>
+        <nav class="navbar">
+            <div class="item_nav">How to Use</div>
+            <div class="item_nav">About Us</div>
+            <div class="item_nav">Contact Us</div>
+        </nav>
+        <h1 class="text-indigo-700 tracking-tighter">prescription.ai</h1>
+        <!-- <span class="subtitle text-indigo-700">Your Medicine Keeper</span> -->
+    </section> 
+    <section>
+        <div class="container">
+            <div class="input" id="input_field">
+                <form onsubmit="submitForm(event)">
+                    <label class="text-gray-500" for="query">Ask me anything:</label>
+                    <input type="text" name="query">
+                    <button type="submit" class="">Submit</button>
+                </form>
+            </div>
+            <div class="output">
+                <label class="text-gray-500" for="answer">Answer:</label>
+                <textarea id="answer" name="answer" readonly></textarea>
+            </div>
+        </div>
+    </section>
+      
+    <script src="sandbox.js"></script>
+</body>
+</html>
