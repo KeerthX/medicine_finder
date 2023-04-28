@@ -84,7 +84,7 @@ h1{
 }
 
 .input button[type="submit"] {
-	background-color: #C06C84;
+	background-color: #ff0048;
 	border: none;
     border-radius: 5px;
 	color: #FFF;
@@ -96,7 +96,7 @@ h1{
 }
 
 .input button:hover{
-    background-color: rgb(9, 186, 21);
+    background-color: rgb(0, 255, 17);
     border-radius: 5px;
 }
 
