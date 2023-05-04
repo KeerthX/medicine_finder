@@ -15,9 +15,9 @@ fetch(dataUrl)
 			const form = document.querySelector("form");
 			form.addEventListener("submit", function (event) {
 				event.preventDefault();
-				const inputValue = inputField.value;
+				const inputValue = inputField.value.toUpperCase(); // Convert input to uppercase
 				const result = jsonData.find(
-					(row) => row["medicine"] === inputValue
+					(row) => row["medicine"].toUpperCase() === inputValue // Compare with uppercase values in sheet
 				);
 				if (result) {
 					const datacol = JSON.parse(result["datacol"]);
