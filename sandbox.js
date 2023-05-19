@@ -31,7 +31,7 @@ fetch(dataUrl)
 					// dosageField.value = datacol.actionclass;
 					ingestionField.value = datacol.ingestiontype;
 				} else {
-					contentField.value = "Medicine Not Found";
+					contentField.value = "Enter Valid Name";
 					dosageField.value = "";
 				}
 			});
