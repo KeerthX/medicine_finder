@@ -12,6 +12,8 @@ fetch(dataUrl)
 			const inputField = document.getElementById("input-value");
 			const contentField = document.getElementById("content");
 			const dosageField = document.getElementById("dosage");
+			const storageField = document.getElementById("storageinfo");
+			const ingestionField = document.getElementById("ingestiontype");
 			const form = document.querySelector("form");
 			form.addEventListener("submit", function (event) {
 				event.preventDefault();
@@ -23,6 +25,11 @@ fetch(dataUrl)
 					const datacol = JSON.parse(result["datacol"]);
 					contentField.value = datacol.content;
 					dosageField.value = datacol.dosage;
+					// dosageField.value = datacol.safetyinfo;
+					storageField.value = datacol.storageinfo;
+					// dosageField.value = datacol.therputicclass;
+					// dosageField.value = datacol.actionclass;
+					ingestionField.value = datacol.ingestiontype;
 				} else {
 					contentField.value = "Medicine Not Found";
 					dosageField.value = "";
