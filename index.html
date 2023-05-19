@@ -10,7 +10,16 @@
     />
     <link href="/dist/output.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <title>prescription.ai</title>
+    <title>Medica</title>
+    <style>
+      .flex-half {
+        flex: 1 1 50%;
+      }
+
+      .textarea-expand {
+        resize: vertical;
+      }
+    </style>
   </head>
   <body>
     <section>
@@ -19,8 +28,7 @@
         <div class="item_nav">About Us</div>
         <div class="item_nav">Contact Us</div>
       </nav>
-      <h1 class="text-indigo-700 tracking-tighter">prescription.ai</h1>
-      <!-- <span class="subtitle text-indigo-700">Your Medicine Keeper</span> -->
+      <h1 class="text-indigo-700 tracking-tighter">Medica</h1>
     </section>
     <section>
       <div class="container">
@@ -32,24 +40,27 @@
           </form>
         </div>
         <div class="output">
-            <div class="flex flex-col gap-y-4">
-              <div>
-                <label class="text-gray-500" for="content">Content:</label>
-                <textarea id="content" readonly></textarea>
+          <div class="flex flex-col gap-y-4">
+            <div>
+              <label class="text-gray-500" for="content">Content:</label>
+              <textarea id="content" readonly></textarea>
+            </div>
+            <div>
+              <label class="text-gray-500" for="dosage">Dosage:</label>
+              <textarea id="dosage" readonly></textarea>
+            </div>
+            <div class="flex gap-x-4">
+              <div class="flex-half">
+                <label class="text-gray-500" for="storageinfo">Storage Information:</label>
+                <textarea id="storageinfo" class="textarea-expand" readonly></textarea>
               </div>
-              <div>
-                <label class="text-gray-500" for="dosage">Dosage:</label>
-                <textarea id="dosage" readonly></textarea>
-              </div>
-              <div>
-                <label class="text-gray-500" for="content">Storage Information</label>
-                <textarea id="storageinfo" readonly></textarea>
-              </div>
-              <div>
-                <label class="text-gray-500" for="dosage">Injestion Type</label>
-                <textarea id="ingestiontype" readonly></textarea>
+              <div class="flex-half">
+                <label class="text-gray-500" for="ingestiontype">Ingestion Type:</label>
+                <textarea id="ingestiontype" class="textarea-expand" readonly></textarea>
               </div>
             </div>
+          </div>
+        </div>
       </div>
     </section>
 

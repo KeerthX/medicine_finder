@@ -19,8 +19,7 @@ fetch(dataUrl)
 				event.preventDefault();
 				const inputValue = inputField.value.toUpperCase(); // Convert input to uppercase
 				if (inputValue === "") {
-					contentField.value = "Enter a Medicine";
-					dosageField.value = "";
+					contentField.value = "Enter a Medicine Name";
 					return;
 				}
 				const result = jsonData.find(
