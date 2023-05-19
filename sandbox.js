@@ -18,6 +18,11 @@ fetch(dataUrl)
 			form.addEventListener("submit", function (event) {
 				event.preventDefault();
 				const inputValue = inputField.value.toUpperCase(); // Convert input to uppercase
+				if (inputValue === "") {
+					contentField.value = "Enter a Medicine";
+					dosageField.value = "";
+					return;
+				}
 				const result = jsonData.find(
 					(row) => row["medicine"].toUpperCase() === inputValue // Compare with uppercase values in sheet
 				);
@@ -25,13 +30,10 @@ fetch(dataUrl)
 					const datacol = JSON.parse(result["datacol"]);
 					contentField.value = datacol.content;
 					dosageField.value = datacol.dosage;
-					// dosageField.value = datacol.safetyinfo;
 					storageField.value = datacol.storageinfo;
-					// dosageField.value = datacol.therputicclass;
-					// dosageField.value = datacol.actionclass;
 					ingestionField.value = datacol.ingestiontype;
 				} else {
-					contentField.value = "Enter Valid Name";
+					contentField.value = "Invalid Medicine Entered";
 					dosageField.value = "";
 				}
 			});
