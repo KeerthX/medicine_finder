@@ -23,7 +23,8 @@ fetch(dataUrl)
 					return;
 				}
 				const result = jsonData.find(
-					(row) => row["medicine"].toUpperCase() === inputValue // Compare with uppercase values in sheet
+					(row) =>
+						row["medicine"].toUpperCase() === inputValue // Compare with uppercase values in sheet
 				);
 				if (result) {
 					const datacol = JSON.parse(result["datacol"]);
@@ -32,8 +33,11 @@ fetch(dataUrl)
 					storageField.value = datacol.storageinfo;
 					ingestionField.value = datacol.ingestiontype;
 				} else {
-					contentField.value = "Invalid Medicine Entered";
+					alert("Invalid Medicine Entered")
+					contentField.value = "";
 					dosageField.value = "";
+					storageField.value = "";
+					ingestionField.value = "";
 				}
 			});
 		};
